@@ -14,23 +14,23 @@ public class Funcionario {
 	public Funcionario(String cpf, String nome, int idade, String[] endereco, double salario)
 			throws InvalidAttributeValueException {
 		if (cpf == null || cpf.length() < 11) {
-			throw new InvalidAttributeValueException("CPF INFORMADO NÃO É VALIDO");
+			throw new InvalidAttributeValueException("CPF INFORMADO Nï¿½O ï¿½ VALIDO");
 		} else {
 			this.cpf = cpf;
 		}
 		if (nome == null) {
-			throw new InvalidAttributeValueException("NOME INFORMADO NÃO É VALIDO");
+			throw new InvalidAttributeValueException("NOME INFORMADO Nï¿½O ï¿½ VALIDO");
 		} else {
 			this.nome = nome;
 		}
 		if (idade < 18 || idade > 100) {
-			throw new InvalidAttributeValueException("IDADE INFORMADA NÃO É VALIDA");
+			throw new InvalidAttributeValueException("IDADE INFORMADA Nï¿½O ï¿½ VALIDA");
 		} else {
 			this.idade = idade;
 		}
 		this.endereco = endereco;
 		if (salario <= 0) {
-			throw new InvalidAttributeValueException("SALARIO INFORMADO NÃO É VALIDO");
+			throw new InvalidAttributeValueException("SALARIO INFORMADO Nï¿½O ï¿½ VALIDO");
 		} else {
 			this.salario = salario;
 		}

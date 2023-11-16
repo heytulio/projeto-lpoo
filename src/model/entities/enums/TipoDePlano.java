@@ -1,9 +1,10 @@
 package model.entities.enums;
 
-public enum Plano {
+public enum TipoDePlano {
 	BASICO,
 	ESSENCIAL,
 	PREMIUM;
 	//TEM QUE COLOCAR AQUI MAIS 1 TIPO DE PLANO
 	//COLOCAR O CONSTRUTOR CORRETO PARA LINKAR COM INT
+	
 }

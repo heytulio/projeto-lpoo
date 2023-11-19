@@ -11,29 +11,13 @@ public class Funcionario {
 	private String[] endereco = new String[5];
 	private double salario;
 
-	public Funcionario(String cpf, String nome, int idade, String[] endereco, double salario)
-			throws InvalidAttributeValueException {
-		if (cpf == null || cpf.length() < 11) {
-			throw new InvalidAttributeValueException("CPF INFORMADO Nï¿½O ï¿½ VALIDO");
-		} else {
-			this.cpf = cpf;
-		}
-		if (nome == null) {
-			throw new InvalidAttributeValueException("NOME INFORMADO Nï¿½O ï¿½ VALIDO");
-		} else {
-			this.nome = nome;
-		}
-		if (idade < 18 || idade > 100) {
-			throw new InvalidAttributeValueException("IDADE INFORMADA Nï¿½O ï¿½ VALIDA");
-		} else {
-			this.idade = idade;
-		}
+	public Funcionario(String cpf, String nome, int idade, String[] endereco, double salario) {
+		this.cpf = cpf;
+		this.nome = nome;
+		this.idade = idade;
 		this.endereco = endereco;
-		if (salario <= 0) {
-			throw new InvalidAttributeValueException("SALARIO INFORMADO Nï¿½O ï¿½ VALIDO");
-		} else {
-			this.salario = salario;
-		}
+		this.salario = salario;
+		
 	}
 
 	public String getCpf() {
@@ -78,7 +62,7 @@ public class Funcionario {
 
 	@Override
 	public String toString() {
-		return String.format("%s,%s,%d,%s,%.2f", cpf, nome, idade, Arrays.toString(endereco), salario);
+		return String.format("CPF: %s, NOME: %s, IDADE: %d, ENDEREÇO: %s, SALARIO: %.2f", cpf, nome, idade, Arrays.toString(endereco), salario);
 	}
 	
 	

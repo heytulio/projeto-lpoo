@@ -5,6 +5,8 @@ import java.util.Arrays;
 
 import javax.management.InvalidAttributeValueException;
 
+import model.entities.enums.TipoDePlano;
+
 public class Aluno {
 	private String cpf;
 	private String nome;
@@ -13,36 +15,16 @@ public class Aluno {
 												// complementar faz dps
 	private Plano plano;
 	private LocalDate asinatura;
+	
 
 	// DateTimeFormatter sdf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	public Aluno(String cpf, String nome, int idade, String[] endereco, Plano plano) throws InvalidAttributeValueException {
-		if (cpf == null || cpf.length() < 11) {
-			throw new InvalidAttributeValueException("CPF INFORMADO NAO ï¿½ VALIDO");
-		} else {
-			this.cpf = cpf;
-		}
-		if (nome == null) {
-			throw new InvalidAttributeValueException("NOME INFORMADO NAO ï¿½ VALIDO");
-		} else {
-			this.nome = nome;
-		}
-		if (idade < 12 || idade > 100) {
-			throw new InvalidAttributeValueException("IDADE INFORMADA Nï¿½O ï¿½ VALIDA");
-		} else {
-			this.idade = idade;
-		}
-		if(endereco.length!=5) {
-			throw new InvalidAttributeValueException("ENDEREÃ‡O INFORMADO NÃƒO Ã‰ VALIDO");
-		}else{
-			this.endereco = endereco; 
-		}
-		if(plano instanceof Plano) {
-			this.plano = plano;
-		}else {
-			throw new InvalidAttributeValueException("PLANO INFORMADO NÃƒO Ã‰ VALIDO");
-		}
-			this.setAsinatura(LocalDate.now());
-		
+	public Aluno(String cpf, String nome, int idade, String[] endereco, Plano plano) {
+		this.cpf = cpf;
+		this.nome = nome;
+		this.idade = idade;
+		this.endereco = endereco;
+		this.plano = plano;
+		this.setAsinatura(LocalDate.now());
 	}
 
 	public String getCpf() {
@@ -57,16 +39,23 @@ public class Aluno {
 		return nome;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setNome(String nome) throws IllegalArgumentException {
+		if (nome == null) throw new IllegalArgumentException("NOME INFORMADO É INVALIDO");
+		else {
+			this.nome = nome;
+		}
 	}
 
 	public int getIdade() {
 		return idade;
 	}
 
-	public void setIdade(int idade) {
-		this.idade = idade;
+	public void setIdade(int idade) throws IllegalArgumentException {
+		if (idade < 10 || idade>100) {
+			throw new IllegalArgumentException("IDADE INSERIDA É INVALIDA");
+		} else {
+			this.idade = idade;
+		}
 	}
 
 	public String[] getEndereco() {
@@ -87,7 +76,7 @@ public class Aluno {
 
 	@Override
 	public String toString() {
-		return String.format("%s,%s,%d,%s,%s,%s", cpf, nome, idade, Arrays.toString(endereco),
+		return String.format("CPF: %s, NOME: %s, IDADE: %d,ENDEREÇO: %s, PLANO: %s, DATA DE ASSINATURA: %s", cpf, nome, idade, Arrays.toString(endereco),
 				plano.getPlano().toString(), asinatura);
 	}
 
@@ -98,5 +87,5 @@ public class Aluno {
 	public void setAsinatura(LocalDate asinatura) {
 		this.asinatura = asinatura;
 	}
-
+	
 }

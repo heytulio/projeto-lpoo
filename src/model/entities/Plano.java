@@ -7,20 +7,28 @@ import model.entities.enums.TipoDePlano;
 public class Plano {
 	Double price;
 	private TipoDePlano plano;
+	private Integer countT;
 
 	public Plano(TipoDePlano plano) {
 		this.plano = plano;
-		TipoDePlano basico=TipoDePlano.valueOf("BASICO") ;
-		TipoDePlano essencial=TipoDePlano.valueOf("ESSENCIAL") ;
-		TipoDePlano premium=TipoDePlano.valueOf("PREMIUM") ;
-		
+		TipoDePlano basico = TipoDePlano.valueOf("BASICO");
+		TipoDePlano essencial = TipoDePlano.valueOf("ESSENCIAL");
+		TipoDePlano premium = TipoDePlano.valueOf("PREMIUM");
+
 		if (plano.equals(basico)) {
 			price = 100.0;
-		}else if (plano.equals(essencial)) {
+			countT = 1;
+		} else if (plano.equals(essencial)) {
 			price = 200.0;
-		}else if (plano.equals(premium)) {
+			countT = 3;
+		} else if (plano.equals(premium)) {
 			price = 300.0;
+			countT = 999;
 		}
+	}
+
+	public Integer getCountT() {
+		return countT;
 	}
 
 	@Override
@@ -45,6 +53,10 @@ public class Plano {
 		return plano == other.plano;
 	}
 
+	public void setCountT(Integer countT) {
+		this.countT = countT;
+	}
+
 	public Double getPrice() {
 		return price;
 	}
@@ -59,6 +71,20 @@ public class Plano {
 
 	public void setPlano(TipoDePlano plano) {
 		this.plano = plano;
+		TipoDePlano basico = TipoDePlano.valueOf("BASICO");
+		TipoDePlano essencial = TipoDePlano.valueOf("ESSENCIAL");
+		TipoDePlano premium = TipoDePlano.valueOf("PREMIUM");
+
+		if (plano.equals(basico)) {
+			price = 100.0;
+			countT = 1;
+		} else if (plano.equals(essencial)) {
+			price = 200.0;
+			countT = 3;
+		} else if (plano.equals(premium)) {
+			price = 300.0;
+			countT = 999;
+		}
 	}
 
 }

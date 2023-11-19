@@ -1,4 +1,4 @@
-package model.services;
+package services;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class PagamentoCartao implements Pagamento {
 			if(aluno.getCpf().equals(cpf)) {
 				aluno.setAsinatura(aluno.getAsinatura().plusMonths(1));
 				Double total = aluno.getPlano().getPrice()*1.02;
-				System.out.println("o aluno: "+aluno.getNome()+" teve sua mensalidade pagano valor de: "+total);
+				System.out.println("O aluno: "+aluno.getNome()+" teve sua mensalidade pagando valor de: "+total);
 			}
 		}
 		

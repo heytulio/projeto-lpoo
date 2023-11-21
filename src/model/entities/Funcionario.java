@@ -2,8 +2,6 @@ package model.entities;
 
 import java.util.Arrays;
 
-import javax.management.InvalidAttributeValueException;
-
 public class Funcionario {
 	private String cpf;
 	private String nome;

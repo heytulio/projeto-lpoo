@@ -14,8 +14,6 @@ import services.util.Validador;
 
 public class CrudFuncionario implements Crud {
 
-	// TODO TERMINAR DE IMPLEMENTAR O METODO ATUALIZAR
-
 	static List<Funcionario> listaFunc = new ArrayList<>();
 	Scanner input = new Scanner(System.in);
 
@@ -31,7 +29,6 @@ public class CrudFuncionario implements Crud {
 				System.out.print("INFORME O NOME: ");
 				var nome = input.nextLine();
 				Validador.validaNome(nome);
-
 				System.out.print("INFORME A IDADE: ");
 				String idad = input.next();
 				Validador.validaIdade('f', idad);
@@ -41,6 +38,12 @@ public class CrudFuncionario implements Crud {
 				String[] enderecoVitrine = new String[] { "LOGRADOURO", "NUMERO", "CEP", "CIDADE", "ESTADO" };
 				for (int i = 0; i < 5; i++) {
 					System.out.print(enderecoVitrine[i] + ": ");
+					if(i == 2) {
+						var cep =input.nextLine();
+						Validador.validaCep(cep);
+						endereco[i] = cep;
+						continue;
+					}
 					endereco[i] = input.nextLine();
 				}
 				System.out.print("INFORME O SALARIO: ");
@@ -59,7 +62,6 @@ public class CrudFuncionario implements Crud {
 					listaFunc.add(funcionario);
 					break;
 				}
-
 			} catch (InputMismatchException e) {
 				System.out.println("Erro: " + e.getMessage());
 				input.nextLine();
@@ -74,10 +76,6 @@ public class CrudFuncionario implements Crud {
 				input.nextLine();
 			}
 		}
-		listaFunc.add(new Funcionario("33333333333", "alex Green", 19, null, 1320));
-		listaFunc.add(new Funcionario("44444444444", "maria", 22, null, 1984));
-		listaFunc.add(new Professor("11133322244", "Claudio", 23, null, 2800, Especialidade.MUSCULACAO));
-		listaFunc.add(new Professor("22233344455", "Pedro", 29, null, 2800, Especialidade.NATACAO));
 	}
 
 	@Override
@@ -109,7 +107,6 @@ public class CrudFuncionario implements Crud {
 						System.out.println("Funcionario " + funcionario.getNome() + " foi removido.");
 						break;
 					}
-
 				}
 				if (flag == true) {
 					System.out.println("N�o foi encontrado nenhum funcionario com esse CPF;");
@@ -165,6 +162,12 @@ public class CrudFuncionario implements Crud {
 						String[] enderecoVitrine1 = new String[] { "LOGRADOURO", "NUMERO", "CEP", "CIDADE", "ESTADO" };
 						for (int i = 0; i < 5; i++) {
 							System.out.print(enderecoVitrine1[i] + ": ");
+							if(i == 2) {
+								var cep = input.nextLine();
+								Validador.validaCep(cep);
+								endereco[i] = cep;
+								continue;
+							}
 							endereco[i] = input.nextLine();
 						}
 						for (int i = 0; i < 5; i++) {
@@ -180,7 +183,6 @@ public class CrudFuncionario implements Crud {
 						f.setSalario(salario);
 						break;
 					}
-
 				}
 				if (flag == true) {
 					System.out.println("Nenhum funcionario foi encontrado com esse CPF;");

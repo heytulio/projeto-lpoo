@@ -20,15 +20,7 @@ public class CrudAluno implements Crud {
 
 	@Override
 	public void adicionar() {
-		TipoDePlano plano1 = TipoDePlano.valueOf("BASICO");
-		String[] enderecoVitrine1 = new String[] { "LOGRADOURO", "NUMERO", "CEP", "CIDADE", "ESTADO" };
-		listaAluno.add(new Aluno("11111111111", "joao", 13, enderecoVitrine1, new Plano(plano1)));
-		listaAluno.add(new Aluno("22222222222", "jose", 13, enderecoVitrine1, new Plano(plano1)));
-
-		// o grosso ta funcionando, tem que fazer ele ficar no loop de informar o
-		// //negocio correto;
 		while (true) {
-
 			try {
 				System.out.print("INFORME O CPF: ");
 				var cpf = input.nextLine();
@@ -45,6 +37,12 @@ public class CrudAluno implements Crud {
 				String[] enderecoVitrine = new String[] { "LOGRADOURO", "NUMERO", "CEP", "CIDADE", "ESTADO" };
 				for (int i = 0; i < 5; i++) {
 					System.out.print(enderecoVitrine[i] + ": ");
+					if(i == 2) {
+						var cep = input.nextLine();
+						Validador.validaCep(cep);
+						endereco[i] = cep;
+						continue;
+					}
 					endereco[i] = input.nextLine();
 				}
 				System.out.print("INFORME O PLANO (BASICO/ESSENCIAL/PREMIUM): ");
@@ -75,7 +73,6 @@ public class CrudAluno implements Crud {
 				if(op=='s')break;
 			}
 		}
-
 	}
 
 	@Override
@@ -154,7 +151,6 @@ public class CrudAluno implements Crud {
 							System.out.print("IDADE: ");
 							String idad = input.next();
 							Validador.validaIdade('a',idad);
-							int idade = Integer.parseInt(idad);
 							input.nextLine();
 							a.setIdade(idad.length() != 0 ? Integer.parseInt(idad) : a.getIdade());
 						} catch (NumberFormatException e) {
@@ -171,8 +167,13 @@ public class CrudAluno implements Crud {
 						System.out.println(Arrays.toString(endAluno));
 						for (int i = 0; i < 5; i++) {
 							System.out.print(enderecoVitrine1[i] + ": ");
+							if(i == 2) {
+								var cep = input.nextLine();
+								Validador.validaCep(cep);
+								endereco[i] = cep;
+								continue;
+							}
 							endereco[i] = input.nextLine();
-
 						}
 						for (int i = 0; i < 5; i++) {
 							if (endereco[i].length() != 0) {
@@ -200,9 +201,6 @@ public class CrudAluno implements Crud {
 			System.out.println("Cadastre um aluno primeiro");
 		else {
 			try {
-				//TODO arrumar o acoplamento desse metodo
-				// isso aqui � ruim pra aplicacao, alto acoplamento, nao consigo pensar em como
-				// fazer certo
 				Pagamento p;
 				System.out.print("Informe o CPF: ");
 				var cpf = input.nextLine();

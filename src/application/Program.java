@@ -1,9 +1,7 @@
-package teste;
+package application;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import javax.management.InvalidAttributeValueException;
 
 import services.CrudAluno;
 import services.CrudFuncionario;
@@ -12,10 +10,9 @@ import services.PagamentoCartao;
 import services.PagamentoDinheiro;
 import services.util.Validador;
 
-public class Teste {
+public class Program {
 
-	public static void main(String[] args) throws InvalidAttributeValueException {
-		// TESTE DE CODIGO
+	public static void main(String[] args)  {
 		Scanner input = new Scanner(System.in);
 		
 		CrudAluno ca = new CrudAluno();
@@ -24,12 +21,6 @@ public class Teste {
 		PagamentoCartao pgc = new PagamentoCartao();
 		CrudTurma ct = new CrudTurma();
 		
-
-		String path = System.getProperty("user.dir");
-		System.out.println(path);
-		
-		//TODO Criar as novas exceptions
-		//TODO Criar o pacote repositories e implementar o sistema de backup
 		//TODO tentar quebrar o codigo testando as excecoes, e anotando o que passar
 		
 		while (true) {
@@ -124,9 +115,10 @@ public class Teste {
 				}
 				break;
 			case '6':
+				System.out.println("---------------------------------");
 				System.out.println("PROGRAMA ENCERRADO ");
+				System.out.println("---------------------------------");
 				break;
-			
 			default:
 				System.out.println("OPERACAO NAO ENCONTRADA");
 				break;
@@ -137,7 +129,6 @@ public class Teste {
 		}
 		
 		input.close();
-			
 		}
 	private static void print() {
 		System.out.println("---------------------------------");
@@ -150,10 +141,6 @@ public class Teste {
 		System.out.println("6: fechar programa");
 		System.out.println();
 		System.out.println("---------------------------------");
-		
-		
-		
-		
 	}
 
 }

@@ -1,7 +1,5 @@
 package model.entities;
 
-import javax.management.InvalidAttributeValueException;
-
 import model.entities.enums.Especialidade;
 
 public class Professor extends Funcionario{

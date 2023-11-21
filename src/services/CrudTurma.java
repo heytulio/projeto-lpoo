@@ -26,6 +26,7 @@ public class CrudTurma implements Crud {
 				String cpf = input.nextLine();
 				Validador.validaCpf(cpf);
 				boolean flag = true;
+				boolean flag2 = true;
 				for (Funcionario funcionario : listaFunc) {
 					if (funcionario.getCpf().equals(cpf)) {
 						flag = false;
@@ -33,24 +34,30 @@ public class CrudTurma implements Crud {
 							flag = false;
 							turmas.add(new Turma((Professor) funcionario));
 							System.out.println("Turma criada;");
+							flag2=false;
 							break;
 						}
 					}
 				}
+				if(flag2==false)break;
 				if(flag == true) {
-						System.out.println("Não existe nenhum funcionario cadastrado com esse CPF ou"
-								+ " não existe um professor cadastrado com esse CPF;");
+						System.out.println("Nï¿½o existe nenhum funcionario cadastrado com esse CPF ou"
+								+ " nï¿½o existe um professor cadastrado com esse CPF;");
 					}
 			} catch(InvalidAttributeValueException e) {
 				System.out.println(e.getMessage());
 				input.nextLine();
+				System.out.println("presione s para sair(qualquer outra letra para continuar)");
+				char op = input.next().charAt(0);
+				input.nextLine();
+				if(op=='s')break;
 			}
 		}
 	}
 
 	@Override
 	public void listar() {
-		if(turmas.size() == 0) System.out.println("Cadastre uma turma antes de usar essa função;");
+		if(turmas.size() == 0) System.out.println("Cadastre uma turma antes de usar essa funï¿½ï¿½o;");
 		else {
 			for (Turma turma : turmas) {
 				System.out.println("Turma de " + turma.getProfessor().getEspecialidade() + " do Professor "
@@ -65,7 +72,7 @@ public class CrudTurma implements Crud {
 
 	@Override
 	public void remover() {
-		if (turmas.size()== 0) System.out.println("Cadastre uma turma antes de usar essa função;");
+		if (turmas.size()== 0) System.out.println("Cadastre uma turma antes de usar essa funï¿½ï¿½o;");
 		else {
 			try {
 				System.out.println("DIGITE O CPF DO PROFESSOR");
@@ -81,7 +88,7 @@ public class CrudTurma implements Crud {
 					}
 				}
 				if(flag == true) {
-					System.out.println("Não existe nenhuma turma com esse professor;");
+					System.out.println("Nï¿½o existe nenhuma turma com esse professor;");
 				}
 			} catch(InvalidAttributeValueException e) {
 				System.out.println(e.getMessage());
@@ -109,7 +116,7 @@ public class CrudTurma implements Crud {
 							if (aluno.getCpf().equals(cpfAluno)) {
 								flag = false;
 								if (aluno.getPlano().getCountT() == 0) {
-									throw new LimitedSignatureException("Plano do aluno possui limitação"
+									throw new LimitedSignatureException("Plano do aluno possui limitaï¿½ï¿½o"
 											+ " na quantidade de turmas que ele pode participar;\n"
 											+ "Troque de plano para poder acessar mais turmas;");
 								} else {
@@ -121,7 +128,7 @@ public class CrudTurma implements Crud {
 							}
 						}
 						if (flag == true) {
-							System.out.println("Não existe nenhum aluno cadastrado com esse cpf;");
+							System.out.println("Nï¿½o existe nenhum aluno cadastrado com esse cpf;");
 						}
 					}
 				}
@@ -156,7 +163,7 @@ public class CrudTurma implements Crud {
 							}
 						}
 						if (flag == true) {
-							System.out.println("O aluno não está cadastrado nessa turma;");
+							System.out.println("O aluno nï¿½o estï¿½ cadastrado nessa turma;");
 						}
 					}
 				}
@@ -168,7 +175,7 @@ public class CrudTurma implements Crud {
 	}
 
 	public void listarAluno() {
-		if(turmas.size() == 0) System.out.println("Cadastre pelo menos uma turma antes de usar essa função;");
+		if(turmas.size() == 0) System.out.println("Cadastre pelo menos uma turma antes de usar essa funï¿½ï¿½o;");
 		else {
 			try {
 				System.out.print("DIGITE O CPF DO PROFESSOR: ");

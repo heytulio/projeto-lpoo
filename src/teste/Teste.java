@@ -29,7 +29,6 @@ public class Teste {
 		System.out.println(path);
 		
 		//TODO Criar as novas exceptions
-		//TODO Implementar validacoes no Validador
 		//TODO Criar o pacote repositories e implementar o sistema de backup
 		//TODO tentar quebrar o codigo testando as excecoes, e anotando o que passar
 		
@@ -45,7 +44,7 @@ public class Teste {
 						+ "3 - Listar alunos;\n"
 						+ "4 - Atualizar aluno;\n"
 						+ "0 - Sair do sub-menu;");
-				System.out.print("escolha a opção: ");
+				System.out.print("escolha a opï¿½ï¿½o: ");
 				char opc = input.next().charAt(0);
 				System.out.println("---------------------------------");
 				if(opc=='1') ca.adicionar();
@@ -65,7 +64,7 @@ public class Teste {
 						+ "3 - Listar funcionarios;\n"
 						+ "4 - Atualizar funcionario;\n"
 						+ "0 - Sair do sub-menu;");
-				System.out.print("escolha a opção: ");
+				System.out.print("escolha a opï¿½ï¿½o: ");
 				char opc2 = input.next().charAt(0);
 				System.out.println("---------------------------------");
 				if(opc2=='1') cf.adicionar();
@@ -81,7 +80,7 @@ public class Teste {
 						+ "2 - Remover turma;\n"
 						+ "3 - Listar turmas;\n"
 						+ "0 - Sair do sub-menu;");
-				System.out.print("escolha a opção: ");
+				System.out.print("escolha a opï¿½ï¿½o: ");
 				char opc3 = input.next().charAt(0);
 				System.out.println("---------------------------------");
 				if(opc3=='1') ct.adicionar();
@@ -94,7 +93,7 @@ public class Teste {
 						+ "2 - Remover aluno da turma;\n"
 						+ "3 - Listar dados da turma;\n"
 						+ "0 - Sair do sub-menu;");
-				System.out.print("escolha a opção: ");
+				System.out.print("escolha a opï¿½ï¿½o: ");
 				char opc4 = input.next().charAt(0);
 				System.out.println("---------------------------------");
 				if(opc4=='1') ct.addAluno();
@@ -105,12 +104,13 @@ public class Teste {
 				try {
 					System.out.println("---------------------------------");
 					System.out.println("Bem-vindo a area de pagamentos");
-					System.out.print("qual a opção de pagamento dinheiro ou cartÃ£o (D/C): ");
+					System.out.print("qual a opï¿½ï¿½o de pagamento dinheiro ou cartÃ£o (D/C): ");
 					char op1 =input.next().charAt(0);
 					System.out.println("---------------------------------");
 					input.nextLine();
 					System.out.println("Digite o CPF: ");
 					String cpf = input.nextLine();
+					Validador.validaCpf(cpf);
 					if(op1=='d') {
 						pg.pagamento(cpf);
 					}else if(op1=='c') {
@@ -124,7 +124,7 @@ public class Teste {
 				}
 				break;
 			case '6':
-				System.out.println("PROGRAMA ENCERADO ");
+				System.out.println("PROGRAMA ENCERRADO ");
 				break;
 			
 			default:

@@ -1,6 +1,5 @@
-package services;
+ package services;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.InputMismatchException;
@@ -29,18 +28,18 @@ public class CrudAluno implements Crud {
 		// o grosso ta funcionando, tem que fazer ele ficar no loop de informar o
 		// //negocio correto;
 		while (true) {
+
 			try {
 				System.out.print("INFORME O CPF: ");
 				var cpf = input.nextLine();
 				Validador.validaCpf(cpf);
 				System.out.print("INFORME O NOME: ");
 				var nome = input.nextLine();
-				if (nome.length() < 3)
-					throw new InvalidAttributeValueException("NOME TEM QUE POSSUIR MAIS QUE 3 CARACTERES");
+				Validador.validaNome(nome);
 				System.out.print("INFORME A IDADE: ");
-				var idade = input.nextInt();
-				if (idade > 100 || idade < 10)
-					throw new InvalidAttributeValueException("IDADE INFORMADA É INVALIDA;");
+				String idad = input.next();
+				Validador.validaIdade('a',idad);
+				int idade = Integer.parseInt(idad);
 				input.nextLine();
 				String[] endereco = new String[5];
 				String[] enderecoVitrine = new String[] { "LOGRADOURO", "NUMERO", "CEP", "CIDADE", "ESTADO" };
@@ -53,15 +52,27 @@ public class CrudAluno implements Crud {
 				Aluno a = new Aluno(cpf, nome, idade, endereco, new Plano(plano));
 				listaAluno.add(a);
 				break;
-
 			} catch (InputMismatchException e) {
 				System.out.println("Erro: " + e.getMessage());
 				input.nextLine();
+				System.out.println("presione s para sair(qualquer outra letra para continuar)");
+				char op = input.next().charAt(0);
+				input.nextLine();
+				if(op=='s')break;
 			} catch (InvalidAttributeValueException e) {
 				System.out.println("Erro: " + e.getMessage());
-			} catch (Exception e) {
-				System.out.println("Erro: " + e.getStackTrace());
 				input.nextLine();
+				System.out.println("presione s para sair(qualquer outra letra para continuar)");
+				char op = input.next().charAt(0);
+				input.nextLine();
+				if(op=='s')break;
+			} catch (Exception e) {
+				System.out.println("Erro: " + e.getMessage());
+				input.nextLine();
+				System.out.println("presione s para sair(qualquer outra letra para continuar)");
+				char op = input.next().charAt(0);
+				input.nextLine();
+				if(op=='s')break;
 			}
 		}
 
@@ -70,7 +81,7 @@ public class CrudAluno implements Crud {
 	@Override
 	public void listar() {
 		if (listaAluno.size() == 0)
-			System.out.println("Não existem alunos cadastrados no sistema;");
+			System.out.println("Nï¿½o existem alunos cadastrados no sistema;");
 		else {
 			System.out.println("----------------------------");
 			System.out.println("Alunos cadastrados no sistema:");
@@ -91,7 +102,7 @@ public class CrudAluno implements Crud {
 	@Override
 	public void remover() {
 		if (listaAluno.size() == 0)
-			System.out.println("Não existem alunos cadastrados no sistema;");
+			System.out.println("Nï¿½o existem alunos cadastrados no sistema;");
 		else {
 			try {
 				System.out.print("Informe o CPF: ");
@@ -107,7 +118,7 @@ public class CrudAluno implements Crud {
 					}
 				}
 				if(flag == true) {
-					System.out.println("Não foi encontrado nenhum aluno com esse CPF;");
+					System.out.println("Nï¿½o foi encontrado nenhum aluno com esse CPF;");
 				}
 			} catch (InvalidAttributeValueException e) {
 				System.out.println("Erro: " + e.getMessage());
@@ -122,7 +133,7 @@ public class CrudAluno implements Crud {
 	@Override
 	public void atualizar() {
 		if (listaAluno.size() == 0)
-			System.out.println("Não existem alunos cadastrados no sistema;");
+			System.out.println("Nï¿½o existem alunos cadastrados no sistema;");
 		else {
 			try {
 				System.out.print("Informe o CPF: ");
@@ -134,14 +145,18 @@ public class CrudAluno implements Crud {
 						flag = false;
 						System.out.println("Dados do Aluno: " + a.toString());
 						System.out.println(
-								"Informe os dados que serão atualizados, deixe em branco para manter o atual;");
+								"Informe os dados que serï¿½o atualizados, deixe em branco para manter o atual;");
 						System.out.print("NOME: ");
 						var nome = input.nextLine();
+						Validador.validaNome(nome);
 						a.setNome(nome.length() != 0 ? nome : a.getNome());
 						try {
 							System.out.print("IDADE: ");
-							String idade = input.nextLine();
-							a.setIdade(idade.length() != 0 ? Integer.parseInt(idade) : a.getIdade());
+							String idad = input.next();
+							Validador.validaIdade('a',idad);
+							int idade = Integer.parseInt(idad);
+							input.nextLine();
+							a.setIdade(idad.length() != 0 ? Integer.parseInt(idad) : a.getIdade());
 						} catch (NumberFormatException e) {
 							System.out.println("Erro: " + e.getMessage());
 							input.nextLine();
@@ -149,7 +164,7 @@ public class CrudAluno implements Crud {
 							System.out.println(e.getMessage());
 							input.nextLine();
 						}
-						System.out.println("INFORME O ENDEREÇO: ");
+						System.out.println("INFORME O ENDEREï¿½O: ");
 						String[] endAluno = a.getEndereco();
 						String[] endereco = new String[5];
 						String[] enderecoVitrine1 = new String[] { "LOGRADOURO", "NUMERO", "CEP", "CIDADE", "ESTADO" };
@@ -168,7 +183,7 @@ public class CrudAluno implements Crud {
 					}
 				}
 				if (flag == true) {
-					System.out.println("Não foi encontrado ninguem com este CPF;");
+					System.out.println("Nï¿½o foi encontrado ninguem com este CPF;");
 				}
 			} catch (IllegalArgumentException e) {
 				System.out.println(e.getMessage());
@@ -186,30 +201,33 @@ public class CrudAluno implements Crud {
 		else {
 			try {
 				//TODO arrumar o acoplamento desse metodo
-				// isso aqui é ruim pra aplicacao, alto acoplamento, nao consigo pensar em como
+				// isso aqui ï¿½ ruim pra aplicacao, alto acoplamento, nao consigo pensar em como
 				// fazer certo
-				Pagamento pc = new PagamentoCartao();
-				Pagamento pd = new PagamentoDinheiro();
+				Pagamento p;
 				System.out.print("Informe o CPF: ");
 				var cpf = input.nextLine();
 				Validador.validaCpf(cpf);
 				for (Aluno a : listaAluno) {
 					if (a.getCpf().equals(cpf)) {
-						System.out.printf("Plano atual do aluno é: %s \n", a.getPlano().getPlano());
+						System.out.printf("Plano atual do aluno ï¿½: %s \n", a.getPlano().getPlano());
 						System.out.println("BASICO; \n" + "ESSENCIAL; \n" + "PREMIUM;\n");
-						System.out.print("Para qual outro plano você deseja mudar?");
+						System.out.print("Para qual outro plano vocï¿½ deseja mudar?");
 						TipoDePlano plano = TipoDePlano.valueOf(input.nextLine().toUpperCase());
 						if (plano.equals(a.getPlano().getPlano())) {
-							System.out.println("Plano inserido já é o plano atual do aluno");
+							System.out.println("Plano inserido jï¿½ ï¿½ o plano atual do aluno");
 							break;
 						} else {
-							System.out.println("OK; Agora é necessario pagar a pendencia do outro plano");
+							System.out.println("OK; Agora ï¿½ necessario pagar a pendencia do outro plano");
 							System.out.println("Qual sera a forma de pagamento (D/C)? ");
 							var charop = input.next().toUpperCase().charAt(0);
-							if (charop == 'D')
-								pd.pagamento(cpf);
-							else if (charop == 'C')
-								pc.pagamento(cpf);
+							if (charop == 'D') {
+								p=new PagamentoDinheiro();
+								p.pagamento(cpf);
+							}
+							else if (charop == 'C') {
+								p=new PagamentoCartao();
+								p.pagamento(cpf);
+							}
 							a.setPlano(new Plano(plano));
 							System.out.println("Plano alterado com sucesso!");
 							break;

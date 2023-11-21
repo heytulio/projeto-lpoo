@@ -1,11 +1,7 @@
-package model.entities;
+	package model.entities;
 
 import java.time.LocalDate;
 import java.util.Arrays;
-
-import javax.management.InvalidAttributeValueException;
-
-import model.entities.enums.TipoDePlano;
 
 public class Aluno {
 	private String cpf;
@@ -40,7 +36,7 @@ public class Aluno {
 	}
 
 	public void setNome(String nome) throws IllegalArgumentException {
-		if (nome == null) throw new IllegalArgumentException("NOME INFORMADO É INVALIDO");
+		if (nome == null) throw new IllegalArgumentException("NOME INFORMADO ï¿½ INVALIDO");
 		else {
 			this.nome = nome;
 		}
@@ -52,7 +48,7 @@ public class Aluno {
 
 	public void setIdade(int idade) throws IllegalArgumentException {
 		if (idade < 10 || idade>100) {
-			throw new IllegalArgumentException("IDADE INSERIDA É INVALIDA");
+			throw new IllegalArgumentException("IDADE INSERIDA ï¿½ INVALIDA");
 		} else {
 			this.idade = idade;
 		}
@@ -76,7 +72,7 @@ public class Aluno {
 
 	@Override
 	public String toString() {
-		return String.format("CPF: %s, NOME: %s, IDADE: %d,ENDEREÇO: %s, PLANO: %s, DATA DE ASSINATURA: %s", cpf, nome, idade, Arrays.toString(endereco),
+		return String.format("CPF: %s, NOME: %s, IDADE: %d,ENDEREï¿½O: %s, PLANO: %s, DATA DE ASSINATURA: %s", cpf, nome, idade, Arrays.toString(endereco),
 				plano.getPlano().toString(), asinatura);
 	}
 

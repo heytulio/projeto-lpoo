@@ -29,12 +29,13 @@ public class CrudTurma implements Crud {
 				boolean flag2 = true;
 				for (Funcionario funcionario : listaFunc) {
 					if (funcionario.getCpf().equals(cpf)) {
-						flag = false;
 						if (funcionario instanceof Professor) {
 							flag = false;
+
 							turmas.add(new Turma((Professor) funcionario));
 							System.out.println("Turma criada;");
 							flag2=false;
+							
 							break;
 						}
 					}

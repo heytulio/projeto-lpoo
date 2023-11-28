@@ -27,7 +27,7 @@ public class CrudFuncionario implements Crud {
 				var cpf = input.nextLine();
 				Validador.validaCpf(cpf);
 				System.out.print("INFORME O NOME: ");
-				var nome = input.nextLine();
+				var nome = input.nextLine().trim();
 				Validador.validaNome(nome);
 				System.out.print("INFORME A IDADE: ");
 				String idad = input.next();
@@ -35,7 +35,7 @@ public class CrudFuncionario implements Crud {
 				int idade=Integer.parseInt(idad);
 				input.nextLine();
 				String[] endereco = new String[5];
-				String[] enderecoVitrine = new String[] { "LOGRADOURO", "NUMERO", "CEP", "CIDADE", "ESTADO" };
+				String[] enderecoVitrine = new String[] { "LOGRADOURO", "NUMERO", "CEP(xxxxx-xxx)", "CIDADE", "ESTADO" };
 				for (int i = 0; i < 5; i++) {
 					System.out.print(enderecoVitrine[i] + ": ");
 					if(i == 2) {
@@ -159,7 +159,7 @@ public class CrudFuncionario implements Crud {
 						System.out.println("INFORME O ENDERE�O: ");
 						String[] endFunc = f.getEndereco();
 						String[] endereco = new String[5];
-						String[] enderecoVitrine1 = new String[] { "LOGRADOURO", "NUMERO", "CEP", "CIDADE", "ESTADO" };
+						String[] enderecoVitrine1 = new String[] { "LOGRADOURO", "NUMERO", "CEP(xxxxx-xxx)", "CIDADE", "ESTADO" };
 						for (int i = 0; i < 5; i++) {
 							System.out.print(enderecoVitrine1[i] + ": ");
 							if(i == 2) {

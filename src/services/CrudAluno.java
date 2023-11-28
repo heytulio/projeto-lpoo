@@ -26,7 +26,7 @@ public class CrudAluno implements Crud {
 				var cpf = input.nextLine();
 				Validador.validaCpf(cpf);
 				System.out.print("INFORME O NOME: ");
-				var nome = input.nextLine();
+				var nome = input.nextLine().trim();
 				Validador.validaNome(nome);
 				System.out.print("INFORME A IDADE: ");
 				String idad = input.next();
@@ -34,7 +34,7 @@ public class CrudAluno implements Crud {
 				int idade = Integer.parseInt(idad);
 				input.nextLine();
 				String[] endereco = new String[5];
-				String[] enderecoVitrine = new String[] { "LOGRADOURO", "NUMERO", "CEP", "CIDADE", "ESTADO" };
+				String[] enderecoVitrine = new String[] { "LOGRADOURO", "NUMERO", "CEP(xxxxx-xxx)", "CIDADE", "ESTADO" };
 				for (int i = 0; i < 5; i++) {
 					System.out.print(enderecoVitrine[i] + ": ");
 					if(i == 2) {
@@ -144,7 +144,7 @@ public class CrudAluno implements Crud {
 						System.out.println(
 								"Informe os dados que ser�o atualizados, deixe em branco para manter o atual;");
 						System.out.print("NOME: ");
-						var nome = input.nextLine();
+						var nome = input.nextLine().trim();
 						Validador.validaNome(nome);
 						a.setNome(nome.length() != 0 ? nome : a.getNome());
 						try {
@@ -163,8 +163,7 @@ public class CrudAluno implements Crud {
 						System.out.println("INFORME O ENDERE�O: ");
 						String[] endAluno = a.getEndereco();
 						String[] endereco = new String[5];
-						String[] enderecoVitrine1 = new String[] { "LOGRADOURO", "NUMERO", "CEP", "CIDADE", "ESTADO" };
-						System.out.println(Arrays.toString(endAluno));
+						String[] enderecoVitrine1 = new String[] { "LOGRADOURO", "NUMERO", "CEP(xxxxx-xxx)", "CIDADE", "ESTADO" };
 						for (int i = 0; i < 5; i++) {
 							System.out.print(enderecoVitrine1[i] + ": ");
 							if(i == 2) {
@@ -233,13 +232,13 @@ public class CrudAluno implements Crud {
 					}
 				}
 			} catch (IllegalArgumentException e) {
-				System.out.println("Erro: " + e.getMessage());
+				System.out.println("Erro: "+ e.getMessage());
 				input.nextLine();
 			} catch(InvalidAttributeValueException e) {
-				System.out.println(e.getMessage());
+				System.out.println("Erro: "+ e.getMessage());
 				input.nextLine();
 			} catch (Exception e) {
-				System.out.println("Erro: " + e.getMessage());
+				System.out.println("Erro: "+ e.getMessage());
 				input.nextLine();
 			}
 		}

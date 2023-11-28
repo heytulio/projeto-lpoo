@@ -34,6 +34,7 @@ public class Program {
 						+ "2 - Remover aluno;\n"
 						+ "3 - Listar alunos;\n"
 						+ "4 - Atualizar aluno;\n"
+						+ "5 - atualizar plano;\n"
 						+ "0 - Sair do sub-menu;");
 				System.out.print("escolha a op��o: ");
 				char opc = input.next().charAt(0);
@@ -57,6 +58,7 @@ public class Program {
 						+ "0 - Sair do sub-menu;");
 				System.out.print("escolha a op��o: ");
 				char opc2 = input.next().charAt(0);
+				input.nextLine();
 				System.out.println("---------------------------------");
 				if(opc2=='1') cf.adicionar();
 				else if(opc2=='2') cf.remover();
@@ -99,12 +101,15 @@ public class Program {
 					char op1 =input.next().charAt(0);
 					System.out.println("---------------------------------");
 					input.nextLine();
-					System.out.println("Digite o CPF: ");
-					String cpf = input.nextLine();
-					Validador.validaCpf(cpf);
 					if(op1=='d') {
+						System.out.println("Digite o CPF: ");
+						String cpf = input.nextLine();
+						Validador.validaCpf(cpf);
 						pg.pagamento(cpf);
 					}else if(op1=='c') {
+						System.out.println("Digite o CPF: ");
+						String cpf = input.nextLine();
+						Validador.validaCpf(cpf);
 						pgc.pagamento(cpf);
 					}
 				} catch (InputMismatchException e) {

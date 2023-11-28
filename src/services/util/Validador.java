@@ -22,7 +22,8 @@ public class Validador {
 	}
 
 	public static boolean validaNome(String nome) throws InvalidAttributeValueException {
-		nome = nome.replace(' ', 'a');
+		nome = nome.replaceAll(" ","");
+
 		if (nome.length() < 3)
 			throw new InvalidAttributeValueException("NOME TEM QUE POSSUIR MAIS QUE 3 CARACTERES");
 		for (int i = 0; i < nome.length(); i++) {
